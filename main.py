@@ -15,6 +15,8 @@ speak = False
 boss = False
 defeated = False
 map = 0
+boss1 = False
+sword = False
 
 HP = 100
 MAXHP = HP
@@ -297,6 +299,18 @@ def save():
         f.write(item + "\n")
     f.close()
 
+def penta():
+    global boss1, fight, map, sword
+    clear()
+    draw()
+    print("You Find Yourself Standing In The Middle of a Giant Pentagram...Your Body Shakes Violently...A Voice Wispears Out to You...")
+    if sword == False:
+        print("UNKNOWN: 'You Must Find The Sword of Zazarm'...")
+    else:
+        print("I see...I Guess Ill Summon The Devil...")
+        fight = True
+        battle()
+
 
 def mayor():
     global key, speak, ATK, MAXHP, defeated
@@ -341,14 +355,17 @@ def cave():
         elif choice == "2":
             boss = False
 def battle():
-    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated 
+    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1 
     
     HP = int(HP)
 
-    if not boss:
+    if not boss or boss1:
         enemy = random.choice(e_list)
     else:
-        enemy = "Damned Knight"    
+        if defeated != True:
+            enemy = "Damned Knight" 
+        else:
+            enemy = "Satan"   
         
     hp = mobs[enemy]["hp"]
     hpmax = hp
@@ -674,5 +691,6 @@ while run:
                         standing = True
                     elif dest == "7":
                         if map1[y][x] == "pentagram":
-                            pass
+                            boss1 = True
+                            penta()
                         standing = True
