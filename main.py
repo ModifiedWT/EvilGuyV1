@@ -509,7 +509,6 @@ while run:
                             fight = True
                             battle()
             else: 
-                biom[map1]
                 if biom[map1[y][x]]["e"]:
                     if random.randint(0,100) <= 30:
                             fight = True
