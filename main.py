@@ -18,7 +18,7 @@ map = 0
 
 HP = 100
 MAXHP = HP
-ATK = 100
+ATK = 5
 pot = 1
 elix = 0
 gold = 0
