@@ -287,7 +287,8 @@ def save():
         str(gold),
         str(x),
         str(y),
-        str(key)
+        str(key),
+        str(MAXHP)
     ]
 
     f = open("load.txt", "w")
@@ -478,6 +479,7 @@ while run:
                   x = int(load_list[6][:-1])
                   y = int(load_list[7][:-1])
                   key = bool(load_list[8][:-1])
+                  MAXHP = int(load_list[9][:-1])
                   clear()
                   draw()
                   print("Welcome Back, " + name + "!")
@@ -671,5 +673,6 @@ while run:
                         print("> ")
                         standing = True
                     elif dest == "7":
-                        pass
+                        if map1[y][x] == "pentagram":
+                            pass
                         standing = True
