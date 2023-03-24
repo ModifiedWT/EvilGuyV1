@@ -18,12 +18,12 @@ map = 0
 boss1 = False
 sword = False
 
-HP = 100
+HP = 200
 MAXHP = HP
-ATK = 5
-pot = 1
-elix = 0
-gold = 0
+ATK = 500
+pot = 10
+elix = 10
+gold = 10
 x = 0
 y = 0
 
@@ -362,9 +362,12 @@ def penta():
     print("You Find Yourself Standing In The Middle of a Giant Pentagram...Your Body Shakes Violently...A Voice Wispears Out to You...")
     if sword == False:
         print("UNKNOWN: 'You Must Find The Sword of Zazarm'...")
+    print("1 - LEAVE")
+    choice = input("_> ")
     else:
         print("I see...I Guess Ill Summon The Devil...")
         fight = True
+        boss1 = True
         battle()
 
 
