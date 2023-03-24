@@ -19,15 +19,20 @@ boss1 = False
 sword = False
 rest1 = False
 
-HP = 100
+HP = 200
 MAXHP = HP
-ATK = 5
+ATK = 500
 pot = 1
 elix = 1
 gold = 10
 x = 0
 y = 0
 
+def print_slow(str):
+    for letter in str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.1)
 
 map0 = [["bunny plains", "bunny plains", "forest", "mountain", "forest", "plains", "cave"],
        ["forest", "forest", "magic forest", "forest", "mountain", "mountain", "hills"], 
@@ -431,15 +436,14 @@ def mayor():
     global key, speak, ATK, MAXHP, defeated
     
     while speak:
-        if defeated == False:
-            clear()
-            draw()
-            print("Hello " + name)
-            if int(ATK) < 10 and int(MAXHP) <= 200:
-                print("Im Sorry But I Can't Have a Child Like You Running Around Killing Damned Knights, Come Back When Your Stronger! Get Better Armor and Swords!")
-            else:
-                print("You've Acctually OutDone Yourself! Take The Key But Be Carful! The Damned Knight is Powerful!")
-                key = True
+        clear()
+        draw()
+        print("Hello " + name)
+        if int(ATK) < 10 and int(MAXHP) <= 200:
+            print("Im Sorry But I Can't Have a Child Like You Running Around Killing Damned Knights, Come Back When Your Stronger! Get Better Armor and Swords!")
+        else:
+            print("You've Acctually OutDone Yourself! Take The Key But Be Carful! The Damned Knight is Powerful!")
+            key = True
 
             draw()
             print("1 - LEAVE")
@@ -450,10 +454,10 @@ def mayor():
             if choice == "1":
                 speak = False
 def cave():
-    global key, boss, fight, map
+    global fight, boss
     clear()
     draw()
-    print("You Enter a Spooky Cave, and a Door Lies ahead, With a KeyHole...")      
+    print_slow("You Enter a Spooky Cave, and a Door Lies ahead, With a KeyHole...\n")      
     draw()
     if key:
         print("1 - USE KEY")
@@ -465,24 +469,22 @@ def cave():
     if choice == "1":
         if key:
             fight = True
-            map = 1
             boss = True
             battle()
     elif choice == "2":
         boss = False
+
 def battle():
-    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1 
     
+    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1 
     HP = int(HP)
 
-    if not boss or boss1 != True:
+    if boss or boss1 is not True:
         enemy = random.choice(e_list)
-    elif boss or boss1 == True:
-        if defeated != True:
-            enemy = "Damned Knight" 
-        else:
-            enemy = "Satan"   
-        
+    elif boss is True:
+        enemy = "Damned Knight"    
+    elif boss1 is True:
+        enemy = "Satan"    
     hp = mobs[enemy]["hp"]
     hpmax = hp
     atk = mobs[enemy]["at"]
@@ -506,6 +508,7 @@ def battle():
         draw()
 
         choice = input("_> ")
+        
         ATK = int(ATK)
         if choice == "1":
             hp -= ATK
@@ -564,12 +567,16 @@ def battle():
                 time.sleep(1.5)
             if enemy == "Damned Knight":
                 draw()
-                print("You Jump Up and Strike The Damned Knight, Wondering Why This Was so Easy...")
+                print_slow("You Jump Up and Strike The Damned Knight, Wondering Why This Was so Easy...")
                 time.sleep(3.5)
                 draw()
                 boss = False
                 defeated = True
             clear()
+
+
+
+
 while run:
     while menu:
         clear()
@@ -582,7 +589,7 @@ while run:
 
         if rules:
             draw()
-            print("Made By ModifiedWT! The Rules are To Not Break My Game! And Report any Bugs To ME :D ENJOY!!\n")
+            print_slow("Made By ModifiedWT! The Rules are To Not Break My Game! And Report any Bugs To ME :D ENJOY!!\n")
             time.sleep(2)
             rules = False
             choice = ""
@@ -597,6 +604,7 @@ while run:
             name = input("# Whats Our Hero's Name? ")
             menu = False
             play = True
+            map = 0
             draw()
         elif choice == "2":
             try:
@@ -792,7 +800,7 @@ while run:
                             heal(30)
                             print("> ")
                         else:
-                            print("No Potions!")
+                            print_slow("No Potions!")
                             time.sleep(1.5)
                         print("> ")
                         standing = True
