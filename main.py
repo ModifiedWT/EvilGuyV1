@@ -17,12 +17,13 @@ defeated = False
 map = 0
 boss1 = False
 sword = False
+rest1 = False
 
-HP = 200
+HP = 100
 MAXHP = HP
-ATK = 500
-pot = 10
-elix = 10
+ATK = 5
+pot = 1
+elix = 1
 gold = 10
 x = 0
 y = 0
@@ -201,7 +202,8 @@ enemy_title = biom[current_title]["e"]
 print(enemy_title)
 
 def clear():
-    os.system('cls')
+    #os.system('cls')
+    print("\n"*500)
 
 def draw():
     print("xX----------------------Xx")
@@ -362,13 +364,74 @@ def penta():
     print("You Find Yourself Standing In The Middle of a Giant Pentagram...Your Body Shakes Violently...A Voice Wispears Out to You...")
     if sword == False:
         print("UNKNOWN: 'You Must Find The Sword of Zazarm'...")
-    print("1 - LEAVE")
-    choice = input("_> ")
     else:
         print("I see...I Guess Ill Summon The Devil...")
         fight = True
         boss1 = True
         battle()
+    print("1 - LEAVE")
+    choice = input("_> ")
+
+    if choice == "1":
+        pass
+
+def rest():
+    global rest1, HP, MAXHP, gold
+    while rest1:
+        clear()
+        draw()
+        print("Welcome To The INN!")
+        draw()
+        print("GOLD: " + str(gold))
+        draw()
+        print("1 - Take a Rest On Hard Bed - 10 Gold (+20 HP)")
+        print("2 - Take a Rest On Light Bed - 20 Gold (+40 HP)")
+        print("3 - Take a Rest On Dreamy Bed - 50 Gold (MAXHP)")
+        print("4 - LEAVE")
+        draw()
+        choice = input("_> ")
+        if choice == "1":
+            if gold >= 10:
+                print("# You Take a Nap On The Hard Bed")
+                print("# + 20 HP")
+                gold -= 5
+                HP += 20
+            else:
+                print("# NOT ENOUGH GOLD!")
+                print("> ")
+        elif choice == "2":
+            if gold >= 20:
+                print("# You Take a Nap on the Light Bed!")
+                gold -= 20
+                print("# + 40 HP")
+                time.sleep(1.5)
+            else:
+                print("# NOT ENOUGH GOLD!")
+                print("> ")
+                time.sleep(1.5)
+        elif choice == "3":
+            if gold >= 15:
+                ATK += 4
+                gold -= 15
+                print("# YOU BOUGHT A SWORD UPGRADE!")
+                time.sleep(1.5)
+            else:
+                print("# NOT ENOUGH GOLD!")
+                print("> ")
+                time.sleep(1.5)
+        elif choice == "4":
+            if gold >= 30:
+                MAXHP += 50
+                gold -= 30
+                print("# YOU'VE GOTTEN STRONGER ARMOR!")
+                time.sleep(1.5)
+            else:
+                print("# NOT ENOUGH GOLD!")
+                print("> ")
+                time.sleep(1.5)
+        elif choice == "5":
+            buy = False
+
 
 
 def mayor():
@@ -438,7 +501,7 @@ def battle():
         print("Defeat the " + enemy + "!")
         draw()
         print(enemy + "'s HP: " + str(hp) + "/" + str(hpmax))
-        print(name + "'s HP" + str(HP) + "/" + str(MAXHP))
+        print(name + "'s HP: " + str(HP) + "/" + str(MAXHP))
         print("POTIONS: " + str(pot))
         print("ELIXIR: " + str(elix))
         draw()
@@ -453,7 +516,7 @@ def battle():
         ATK = int(ATK)
         if choice == "1":
             hp -= ATK
-            print(name + " dealt " + str(ATK) + "damage to " + enemy)
+            print(name + " dealt " + str(ATK) + " damage to " + enemy)
             time.sleep(1.5)
             if hp > 0:
                 HP -= atk
@@ -753,7 +816,12 @@ while run:
                         if map1[y][x] == "pentagram":
                             boss1 = True
                             penta()
-                        elif map1[y][x] == "qwerty":
+                        elif map1[y][x] == "shop1":
                             buy = True
                             shop1()
+                        elif map1[y][x] == "qwerty":
+                            qwerty()
+                        elif map1[y][x] == "inn":
+                            rest = True
+                            rest()
                         standing = True
