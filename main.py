@@ -338,6 +338,7 @@ def shop():
             buy = False
 
 def save():
+    global HP,ATK,pot,elix,gold,x,y,key,MAXHP
     list = [
         name,
         str(HP),
@@ -364,7 +365,7 @@ def penta():
     print("You Find Yourself Standing In The Middle of a Giant Pentagram...Your Body Shakes Violently...A Voice Wispears Out to You...")
     if sword == False:
         print("UNKNOWN: 'You Must Find The Sword of Zazarm'...")
-    else:
+    elif sword == True:
         print("I see...I Guess Ill Summon The Devil...")
         fight = True
         boss1 = True
@@ -394,7 +395,7 @@ def rest():
             if gold >= 10:
                 print("# You Take a Nap On The Hard Bed")
                 print("# + 20 HP")
-                gold -= 5
+                gold -= 10
                 HP += 20
             else:
                 print("# NOT ENOUGH GOLD!")
@@ -404,33 +405,25 @@ def rest():
                 print("# You Take a Nap on the Light Bed!")
                 gold -= 20
                 print("# + 40 HP")
+                HP += 40
                 time.sleep(1.5)
             else:
                 print("# NOT ENOUGH GOLD!")
                 print("> ")
                 time.sleep(1.5)
         elif choice == "3":
-            if gold >= 15:
-                ATK += 4
-                gold -= 15
-                print("# YOU BOUGHT A SWORD UPGRADE!")
+            if gold >= 50:
+                print("# You Take a Nap On the Dreamy Bed!")
+                gold -= 50
+                MAXHP += MAXHP
+                print("# MAXHP has Been Restored!")
                 time.sleep(1.5)
             else:
                 print("# NOT ENOUGH GOLD!")
                 print("> ")
                 time.sleep(1.5)
         elif choice == "4":
-            if gold >= 30:
-                MAXHP += 50
-                gold -= 30
-                print("# YOU'VE GOTTEN STRONGER ARMOR!")
-                time.sleep(1.5)
-            else:
-                print("# NOT ENOUGH GOLD!")
-                print("> ")
-                time.sleep(1.5)
-        elif choice == "5":
-            buy = False
+            rest1 = False
 
 
 
@@ -609,7 +602,7 @@ while run:
             try:
                f = open("load.txt", "r")
                load_list = f.readlines()
-               if len(load_list) == 9:
+               if len(load_list) == 10:
                   name = load_list[0][:-1]
                   HP = load_list[1][:-1]
                   ATK = load_list[2][:-1]
