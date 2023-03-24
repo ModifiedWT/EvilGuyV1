@@ -408,8 +408,8 @@ def cave():
             fight = True
             map = 1
             battle()
-        elif choice == "2":
-            boss = False
+    elif choice == "2":
+        boss = False
 def battle():
     global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1 
     
