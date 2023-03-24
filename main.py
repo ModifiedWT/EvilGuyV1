@@ -407,6 +407,7 @@ def cave():
         if key:
             fight = True
             map = 1
+            boss = True
             battle()
     elif choice == "2":
         boss = False
@@ -415,9 +416,9 @@ def battle():
     
     HP = int(HP)
 
-    if not boss or boss1:
+    if not boss or boss1 != True:
         enemy = random.choice(e_list)
-    else:
+    elif boss or boss1 == True:
         if defeated != True:
             enemy = "Damned Knight" 
         else:
