@@ -418,6 +418,17 @@ def rest():
         elif choice == "4":
             rest1 = False
 
+def qwerty():
+    global ATK, sword
+    print("Hello " + name + "!")
+    print("My Days of Adventuring Are Over... There is One Thing Ive always Wanted to do, But My Old Body Can't...I Need You To Defeat Satan For me...With the Sword of Zazarm...May God Give You Power...")
+    print("# You Need At Least 60 ATK to get the sword!")
+    if ATK >= 60:
+        print("Heres The Sword...Keep it")
+        sword = True
+    else:
+        print("Your Not Strong Enough, Hurry I Can feel Myself Slipping...")
+
 
 
 def mayor():
