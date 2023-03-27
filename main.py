@@ -21,7 +21,7 @@ rest1 = False
 
 HP = 200
 MAXHP = HP
-ATK = 500
+ATK = 55
 pot = 1
 elix = 1
 gold = 10
@@ -454,7 +454,7 @@ def mayor():
             if choice == "1":
                 speak = False
 def cave():
-    global fight, boss
+    global fight, boss, map
     clear()
     draw()
     print_slow("You Enter a Spooky Cave, and a Door Lies ahead, With a KeyHole...\n")      
@@ -470,21 +470,25 @@ def cave():
         if key:
             fight = True
             boss = True
+            map = 1
             battle()
     elif choice == "2":
         boss = False
 
 def battle():
     
-    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1 
+    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1, key
     HP = int(HP)
 
-    if boss or boss1 is not True:
-        enemy = random.choice(e_list)
-    elif boss is True:
-        enemy = "Damned Knight"    
-    elif boss1 is True:
-        enemy = "Satan"    
+    if key:
+        if boss is True:
+            enemy = "Damned Knight"    
+        elif boss1 is True:
+            enemy = "Satan"
+        else:
+           enemy = random.choice(e_list) 
+    else:
+         enemy = random.choice(e_list)
     hp = mobs[enemy]["hp"]
     hpmax = hp
     atk = mobs[enemy]["at"]
