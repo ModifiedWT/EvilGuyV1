@@ -237,9 +237,8 @@ def shop1():
         print("ATK: " + str(ATK))
         draw()
         print("1 - BUY ELIXIR (50HP) - 10 GOLD")
-        print("2 - BUY ZAXARM SWORD - 100 GOLD")
-        print("3 - ARMOR UPGRADE! (+ 50 Health) - 50 GOLD")
-        print("4 - LEAVE")
+        print("2 - ARMOR UPGRADE! (+ 50 Health) - 50 GOLD")
+        print("3 - LEAVE")
         draw()
 
         choice = input("_> ")
@@ -256,17 +255,6 @@ def shop1():
                 print("> ")
                 time.sleep(1.5)
         elif choice == "2":
-            if gold >= 100:
-                ATK += 30
-                gold -= 100
-                print("# YOU BOUGHT A THE ZAXARAM SWORD UPGRADE!")
-                print("This Sword Can Kill Satan!")
-                time.sleep(1.5)
-            else:
-                print("# NOT ENOUGH GOLD!")
-                print("> ")
-                time.sleep(1.5)
-        elif choice == "3":
             if gold >= 30:
                 MAXHP += 50
                 gold -= 30
@@ -276,7 +264,7 @@ def shop1():
                 print("# NOT ENOUGH GOLD!")
                 print("> ")
                 time.sleep(1.5)
-        elif choice == "4":
+        elif choice == "3":
             buy = False
 
 def shop():
