@@ -239,7 +239,7 @@ def shop1():
         draw()
         print("1 - BUY ELIXIR (50HP) - 10 GOLD")
         print("2 - ARMOR UPGRADE! (+ 50 Health) - 50 GOLD")
-        print("3 - Sword GEMS! (+ 100 ATK) - 200 GOLD")
+        print("3 - Sword GEMS! (+ 50 ATK) - 200 GOLD")
         print("4 - LEAVE")
         draw()
 
@@ -268,7 +268,7 @@ def shop1():
                 time.sleep(1.5)
         elif choice == "3":
             if gold >= 200:
-                ATK += 100
+                ATK += 50
                 gold -= 200
                 print("# You Made Your Sword Shiny!")
                 time.sleep(1.5)
@@ -440,6 +440,11 @@ def qwerty():
             sword = True
         else:
             print("Your Not Strong Enough, Hurry I Can feel Myself Slipping...")
+            q = False
+        print("1 - LEAVE")
+        choice = input("_> ")
+
+        if choice == "1":
             q = False
 
 
@@ -831,7 +836,6 @@ while run:
                         standing = True
                     elif dest == "7":
                         if map1[y][x] == "pentagram":
-                            boss1 = True
                             penta()
                         elif map1[y][x] == "shop1":
                             buy = True
