@@ -18,10 +18,11 @@ map = 0
 boss1 = False
 sword = False
 rest1 = False
+q = False
 
-HP = 200
+HP = 100
 MAXHP = HP
-ATK = 55
+ATK = 5
 pot = 1
 elix = 1
 gold = 10
@@ -238,7 +239,8 @@ def shop1():
         draw()
         print("1 - BUY ELIXIR (50HP) - 10 GOLD")
         print("2 - ARMOR UPGRADE! (+ 50 Health) - 50 GOLD")
-        print("3 - LEAVE")
+        print("3 - Sword GEMS! (+ 100 ATK) - 200 GOLD")
+        print("4 - LEAVE")
         draw()
 
         choice = input("_> ")
@@ -265,6 +267,15 @@ def shop1():
                 print("> ")
                 time.sleep(1.5)
         elif choice == "3":
+            if gold >= 200:
+                ATK += 100
+                gold -= 200
+                print("# You Made Your Sword Shiny!")
+                time.sleep(1.5)
+            else:
+                print("# NOT ENOUGH GOLD")
+                print("> ")
+        elif choice == "4":
             buy = False
 
 def shop():
@@ -408,7 +419,7 @@ def rest():
             if gold >= 50:
                 print("# You Take a Nap On the Dreamy Bed!")
                 gold -= 50
-                MAXHP += MAXHP
+                HP += MAXHP
                 print("# MAXHP has Been Restored!")
                 time.sleep(1.5)
             else:
@@ -419,15 +430,17 @@ def rest():
             rest1 = False
 
 def qwerty():
-    global ATK, sword
-    print("Hello " + name + "!")
-    print("My Days of Adventuring Are Over... There is One Thing Ive always Wanted to do, But My Old Body Can't...I Need You To Defeat Satan For me...With the Sword of Zazarm...May God Give You Power...")
-    print("# You Need At Least 60 ATK to get the sword!")
-    if ATK >= 60:
-        print("Heres The Sword...Keep it")
-        sword = True
-    else:
-        print("Your Not Strong Enough, Hurry I Can feel Myself Slipping...")
+    global ATK, sword, q
+    while q:
+        print("Hello " + name + "!")
+        print("My Days of Adventuring Are Over... There is One Thing Ive always Wanted to do, But My Old Body Can't...I Need You To Defeat Satan For me...With the Sword of Zazarm...May God Give You Power...")
+        print("# You Need At Least 60 ATK to get the sword!")
+        if ATK >= 60:
+            print("Heres The Sword...Keep it")
+            sword = True
+        else:
+            print("Your Not Strong Enough, Hurry I Can feel Myself Slipping...")
+            q = False
 
 
 
@@ -824,8 +837,9 @@ while run:
                             buy = True
                             shop1()
                         elif map1[y][x] == "qwerty":
+                            q = True
                             qwerty()
                         elif map1[y][x] == "inn":
-                            rest = True
+                            rest1 = True
                             rest()
                         standing = True
