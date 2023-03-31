@@ -50,7 +50,7 @@ map1 = [["stalactites", "stalactites", "rocks", "rocks", "rocks", "rocks", "hole
         ["gravel", "deep", "rocks", "rocks", "gravel", "deep", "rocks"]
         ]
 
-map2 = [["cave", "path", "path", "path", "path", "path", "path", "path", "path", "path", "path"],
+map2 = [["path", "path", "path", "path", "path", "path", "path", "path", "path", "path", "path"],
         ["hills", "hills", "path", "path", "gravel", "gravel", "gravel", "river", "lake", "lake", "lake"],
         ["plains", "forest", "path", "forest", "ruins", "forest", "mountain", "river", "lake", "lake", "lake"],
         ["plains", "hills", "forest", "path", "deep", "deep", "mountain", "mountain", "plains", "bunny plains", "bunny plains"],
@@ -191,7 +191,7 @@ biom = {
 
 }
 
-e_list = ["Goblin", "Orc", "Slime", "Mutant Rabbit", "Bear", "Demon", "CockRoacher"]
+e_list = ["Goblin", "Orc", "Slime", "Mutant Rabbit", "Bear", "Demon", "CockRoacher", "Golem", "Mimic", "Wolf", "Possesed Child", "Mountain Lion", "Giant"]
 
 mobs = {
     "Goblin": {
@@ -264,7 +264,11 @@ mobs = {
     "at": 12,
     "go": 10
     },
-    
+    "Giant": {
+    "hp": 100,
+    "at": 15,
+    "go": 13
+    },
 }
 
 
@@ -516,8 +520,6 @@ def qwerty():
         if choice == "1":
             q = False
 
-
-
 def mayor():
     global key, speak, ATK, MAXHP, defeated
     
@@ -564,7 +566,7 @@ def cave():
 
 def battle():
     
-    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1, key
+    global fight, play, run, HP, pot, elix, gold, boss, ATK, defeated, boss1, key, map
     HP = int(HP)
 
     if key:
@@ -663,6 +665,10 @@ def battle():
                 draw()
                 boss = False
                 defeated = True
+            elif enemy == "Satan":
+                draw()
+                print_slow("BY Killing The Lord of The Dead You Realie You Reverse Everything That had Happened to this cruel World...Your Sent backwards into time.")
+                map = 2
             clear()
 
 
@@ -991,16 +997,13 @@ while run:
                     print("> ")
                     standing = True
                 elif dest == "7":
-                    if map2[y][x] == "pentagram":
-                        r = True
-                        penta()
-                    elif map2[y][x] == "shop1":
-                        buy = True
-                        shop1()
-                    elif map2[y][x] == "qwerty":
-                        q = True
-                        qwerty()
+                    if map2[y][x] == "school":
+                        pass
+                    elif map2[y][x] == "congress":
+                        pass
                     elif map2[y][x] == "inn":
                         rest1 = True
                         rest()
+                    elif map2[y][x] == "valve":
+                        pass
                     standing = True
