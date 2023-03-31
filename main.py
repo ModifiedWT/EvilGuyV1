@@ -19,10 +19,11 @@ boss1 = False
 sword = False
 rest1 = False
 q = False
+r = False
 
-HP = 100
+HP = 500
 MAXHP = HP
-ATK = 5
+ATK = 500
 pot = 1
 elix = 1
 gold = 10
@@ -47,6 +48,19 @@ map1 = [["stalactites", "stalactites", "rocks", "rocks", "rocks", "rocks", "hole
         ["deep", "deep", "deep", "pentagram", "deep", "deep", "deep", "deep"],
         ["deep", "deep", "gravel", "gravel", "deep", "rocks", "stalactites"],
         ["gravel", "deep", "rocks", "rocks", "gravel", "deep", "rocks"]
+        ]
+
+map2 = [["cave", "path", "path", "path", "path", "path", "path", "path", "path", "path", "path"],
+        ["hills", "hills", "path", "path", "gravel", "gravel", "gravel", "river", "lake", "lake", "lake"],
+        ["plains", "forest", "path", "forest", "ruins", "forest", "mountain", "river", "lake", "lake", "lake"],
+        ["plains", "hills", "forest", "path", "deep", "deep", "mountain", "mountain", "plains", "bunny plains", "bunny plains"],
+        ["hills", "hills", "path", "path", "deep", "rocks", "mountain", "river", "ruins", "bunny plains", "bunny plains"],
+        ["hills", "hills", "path", "path", "gravel", "gravel", "mountain", "gravel", "rocks", "hills", "hills"],
+        ["hills", "plains", "path", "path", "rocks", "congress", "hills", "bridge", "inn", "gravel", "rocks"],
+        ["hills", "", "path", "path", "hills", "hills", "rocks", "rocks", "gravel", "mountain", "river"],
+        ["school", "deep", "path", "path", "river", "plains", "hills", "rocks", "hills", "mountain", "river"],
+        ["deep", "rocks", "path", "path", "river", "plains", "plains", "ruins", "mountain", "river", "river"],
+        ["valve", "forest", "path", "path", "river", "forest", "forest", "bunny plains", "mountain", "river", "river"]
         ]
 
 y_len = len(map0)-1 or len(map1)-1
@@ -144,6 +158,34 @@ biom = {
     "pentagram": {
     "t": "PENTAGRAM",
     "e": False
+    },
+    "school": {
+    "t": "ABANDONED SCHOOL",
+    "e": False
+    },
+    "congress": {
+    "t": "CONGRESS HALL",
+    "e": False
+    },
+    "path": {
+    "t": "A PATH",
+    "e": True
+    },
+    "valve": {
+    "t": "A VALVE",
+    "e": False
+    },
+    "river": {
+    "t": "A RIVER",
+    "e": True
+    },
+    "lake": {
+    "t": "A LAKE",
+    "e": True
+    },
+    "ruins": {
+    "t": "SOME RUINS",
+    "e": True
     }
 
 
@@ -196,7 +238,33 @@ mobs = {
     "hp": 400,
     "at": 30,
     "go": 4
-    }
+    },
+    "Golem": {
+    "hp": 60,
+    "at": 12,
+    "go": 20
+    },
+    "Mimic": {
+    "hp": 58,
+    "at": 8,
+    "go": 20
+    },
+    "Wolf": {
+    "hp": 35,
+    "at": 15,
+    "go": 60
+    },
+    "Possesed Child": {
+    "hp": 40,
+    "at": 16,
+    "go": 20
+    },
+    "Mountain Lion": {
+    "hp": 55,
+    "at": 12,
+    "go": 10
+    },
+    
 }
 
 
@@ -363,22 +431,23 @@ def save():
     f.close()
 
 def penta():
-    global boss1, fight, map, sword
+    global boss1, fight, map, sword,r
     clear()
     draw()
-    print("You Find Yourself Standing In The Middle of a Giant Pentagram...Your Body Shakes Violently...A Voice Wispears Out to You...")
-    if sword == False:
-        print("UNKNOWN: 'You Must Find The Sword of Zazarm'...")
-    elif sword == True:
-        print("I see...I Guess Ill Summon The Devil...")
-        fight = True
-        boss1 = True
-        battle()
-    print("1 - LEAVE")
-    choice = input("_> ")
+    print_slow("You Find Yourself Standing In The Middle of a Giant Pentagram...Your Body Shakes Violently...A Voice Wispears Out to You...")
+    if r:
+        if sword == False:
+            print("UNKNOWN: 'You Must Find The Sword of Zazarm'...")
+        elif sword == True:
+            print("I see...I Guess Ill Summon The Devil...")
+            fight = True
+            boss1 = True
+            battle()
+        print("1 - LEAVE")
+        choice = input("_> ")
 
-    if choice == "1":
-        pass
+        if choice == "1":
+            pass
 
 def rest():
     global rest1, HP, MAXHP, gold
@@ -470,6 +539,7 @@ def mayor():
 
             if choice == "1":
                 speak = False
+
 def cave():
     global fight, boss, map
     clear()
@@ -622,6 +692,8 @@ while run:
         if choice == "1":
             clear()
             draw()
+            print_slow("# There was Once a Big Conflict Between Heaven and Hell...Long Ago a Person Named Avrun, Disrupting The Force of Balance, by Summoning Demons and Ghouls...\n")
+            clear()
             name = input("# Whats Our Hero's Name? ")
             menu = False
             play = True
@@ -836,6 +908,7 @@ while run:
                         standing = True
                     elif dest == "7":
                         if map1[y][x] == "pentagram":
+                            r = True
                             penta()
                         elif map1[y][x] == "shop1":
                             buy = True
@@ -847,3 +920,87 @@ while run:
                             rest1 = True
                             rest()
                         standing = True
+            elif map == 2:
+                draw()
+                print("LOCATION: " + biom[map2[y][x]]["t"])
+                draw()
+                print("NAME: " + name)
+                print("HP: " + str(HP) + "/" + str(MAXHP))
+                print("ATK: " + str(ATK))
+                print("POTIONS: " + str(pot))
+                print("ELIXERS: " + str(elix))
+                print("GOLD: " + str(gold))
+                print("COORDS: ", x, y)
+                draw()
+                print("0 - SAVE AND QUIT")
+                print("1 - NORTH")
+                print("2 - EAST")
+                print("3 - SOUTH")
+                print("4 - WEST")
+                print("5 - USE POTION (30 HP)")
+                print("6 - USE ELIXIR (50 HP)")
+                print("7 - ENTER/TALK")
+                draw()
+                dest = input("_> ")
+                if dest == "0":
+                    play = False
+                    menu = True
+                    save()
+                elif dest == "1":
+                    if y > 0:
+                        y-= 1
+                        Standing = False
+                    else:
+                        y = y_len
+                elif dest == "2":
+                    if x > 0:
+                        x -= 1
+                        Standing = False
+                    else:
+                        x = x_len
+                        
+                elif dest == "3":
+                    if y < y_len:
+                        y += 1
+                        Standing = False
+                    else:
+                        y = 0
+                elif dest == "4":
+                    if x < x_len:
+                        x += 1
+                        Standing = False
+                    else:
+                        x = 0
+                elif dest == "5":
+                    if pot > 0:
+                        pot -= 1
+                        heal(30)
+                        print("> ")
+                    else:
+                        print_slow("No Potions!")
+                        time.sleep(1.5)
+                    print("> ")
+                    standing = True
+                elif dest == "6":
+                    if elix > 0:
+                        elix -= 1
+                        heal(50)
+                    else:
+                        print("No Elixirs!")
+                        time.sleep(1.5)
+                    print("> ")
+                    standing = True
+                elif dest == "7":
+                    if map2[y][x] == "pentagram":
+                        r = True
+                        penta()
+                    elif map2[y][x] == "shop1":
+                        buy = True
+                        shop1()
+                    elif map2[y][x] == "qwerty":
+                        q = True
+                        qwerty()
+                    elif map2[y][x] == "inn":
+                        rest1 = True
+                        rest()
+                    standing = True
