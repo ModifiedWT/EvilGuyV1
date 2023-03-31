@@ -20,7 +20,7 @@ sword = False
 rest1 = False
 q = False
 r = False
-school = False
+school1 = False
 
 HP = 500
 MAXHP = HP
@@ -677,6 +677,8 @@ def school():
     while school:
         print_slow("You Enter a school, You Hear Metal Scrapping on a WhiteBoard...")
         #Wisper Sound effect here :D
+        file = "metal-scrapping-on-rock-45608.mp3"
+        os.system("mpg123" + file)
 
 
 while run:
@@ -1003,7 +1005,7 @@ while run:
                     standing = True
                 elif dest == "7":
                     if map2[y][x] == "school":
-                        school = True
+                        school1 = True
                         school()
                     elif map2[y][x] == "congress":
                         pass
