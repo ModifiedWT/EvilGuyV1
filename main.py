@@ -20,6 +20,7 @@ sword = False
 rest1 = False
 q = False
 r = False
+school = False
 
 HP = 500
 MAXHP = HP
@@ -671,7 +672,11 @@ def battle():
                 map = 2
             clear()
 
-
+def school():
+    global school
+    while school:
+        print_slow("You Enter a school, You Hear Metal Scrapping on a WhiteBoard...")
+        #Wisper Sound effect here :D
 
 
 while run:
@@ -998,7 +1003,8 @@ while run:
                     standing = True
                 elif dest == "7":
                     if map2[y][x] == "school":
-                        pass
+                        school = True
+                        school()
                     elif map2[y][x] == "congress":
                         pass
                     elif map2[y][x] == "inn":
