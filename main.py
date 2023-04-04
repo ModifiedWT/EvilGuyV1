@@ -676,9 +676,6 @@ def school():
     global school
     while school:
         print_slow("You Enter a school, You Hear Metal Scrapping on a WhiteBoard...")
-        #Wisper Sound effect here :D
-        file = "metal-scrapping-on-rock-45608.mp3"
-        os.system("mpg123" + file)
 
 
 while run:
