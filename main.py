@@ -669,13 +669,15 @@ def battle():
             elif enemy == "Satan":
                 draw()
                 print_slow("BY Killing The Lord of The Dead You Realie You Reverse Everything That had Happened to this cruel World...Your Sent backwards into time.")
+                draw()
                 map = 2
+                boss1 = False
             clear()
 
 def school():
     global school
     while school:
-        print_slow("You Enter a school, You Hear Metal Scrapping on a WhiteBoard...")
+        print_slow("You Enter a school, You Hear Metal Scrapping on a WhiteBoard...Suddenly It Stops, Giving You Chills Down your Spine")
 
 
 while run:
