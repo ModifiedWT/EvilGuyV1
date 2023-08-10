@@ -22,9 +22,9 @@ q = False
 r = False
 school1 = False
 
-HP = 500
+HP = 100
 MAXHP = HP
-ATK = 500
+ATK = 10
 pot = 1
 elix = 1
 gold = 10
